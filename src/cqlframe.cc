@@ -33,7 +33,7 @@ bool CQLFrame::isFrame(const uint8_t *buf, size_t bufsz)
 
     uint8_t version = *buf & ~0x80;
     uint8_t flags = *++buf;
-    return (version == 0x01 || version == 0x02 || version == 0x03) && flags <= 3;
+    return (version == 0x01 || version == 0x02 || version == 0x03 || version == 0x04) && flags <= 4;
 }
 
 
@@ -130,8 +130,8 @@ void CQLFrame::parse(int max_query_values)
             stream = h2->stream;
             opcode = static_cast<Opcode>(h2->opcode);
             frame_len = ntohl(h2->length);
-        } else if (version == 0x03 || version == 0x83) {
-            // v3 header is packed on the wire, so we can't read it directly into our
+        } else if (version == 0x03 || version == 0x83 || version == 0x04 || version == 0x84) {
+            // v3/v4 header is packed on the wire, so we can't read it directly into our
             // neatly aligned in-memory structure.
             fp++;
             header_len = 9;

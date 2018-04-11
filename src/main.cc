@@ -29,7 +29,7 @@
 #include "cqlframe.h"
 #include "stream.h"
 
-const char *argp_program_version = "cqlsniff 1.2";
+const char *argp_program_version = "cqlsniff 1.2.1";
 const char *argp_program_bug_address = "https://github.com/blackberry/cqlsniff/issues";
 
 struct arguments {
